@@ -5,6 +5,7 @@ p() {
     case $1 in
     set) __p_set $2 $3 ;;
     list) __p_list $2 ;;
+    rm) __p_rm $2 ;;
     *)
         if [ -z $1 ] ; then
             __p_help
@@ -47,14 +48,23 @@ __p_list() {
     fi
 }
 
+__p_rm() {
+    if [ -z $1 ] ; then
+        __p_err "Missing alias key"
+    fi
+
+    grep -v $1 $P_PROPERTIES_FILE > $P_PROPERTIES_FILE.tmp
+    mv $P_PROPERTIES_FILE{.tmp,}
+}
+
 __p_cd() {
-    local path `__p_getPath $1`
-    if [ -z $path] ; then
+    local path=$(__p_getPath $1)
+    if [ -z $path ] ; then
         __p_err "Alias \"$1\" does not exist"
         return 1
     fi
 
-    cd $1
+    cd $path
 }
 
 __p_getPath() {
