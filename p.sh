@@ -28,7 +28,7 @@ __list() {
     if [ -z $1 ] ; then
         cat `echo $P_PROPERTIES_FILE`
     else
-        _p_singleAlias=$(grep $1 $P_PROPERTIES_FILE)
+        _p_singleAlias=$(grep ^$1 $P_PROPERTIES_FILE)
         if [ -z $_p_singleAlias ] ; then
             echo "Alias \"$1\" not found"
         else
@@ -41,9 +41,10 @@ __list() {
 __cd() {
     if [ -z $1 ] ; then
         echo "Missing alias name"
+        return 1
     fi
 
-    _p_path=$(grep $1 $P_PROPERTIES_FILE | cut -d"=" -f2)
+    _p_path=$(grep ^$1 $P_PROPERTIES_FILE | cut -d"=" -f2)
     if [ -z $_p_path ] ; then
         echo "No definition for alias \"$1\""
     fi
@@ -51,5 +52,3 @@ __cd() {
     cd $_p_path
     unset _p_path
 }
-
-
