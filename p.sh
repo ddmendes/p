@@ -6,6 +6,10 @@ p() {
     set) __p_set $2 $3 ;;
     list) __p_list $2 ;;
     rm) __p_rm $2 ;;
+    --help) ;&
+    help)   ;&
+    -h)
+        __p_help ;;
     *)
         if [ -z $1 ] ; then
             __p_help
@@ -17,7 +21,23 @@ p() {
 }
 
 __p_help() {
-    echo "P utility help"
+    cat <<EOF
+P path shortcuts manager
+
+Usage:
+    p set <alias> <path>
+    p list [<alias>]
+    p rm <alias>
+    p <alias>
+
+Commands:
+set         Stores (add or edit) a shortcut for directory <path> with
+            key <alias>.
+list        If no alias is given list all known alias=path.
+            If alias is given list according path.
+rm          Remove an alias.
+<alias>     Change working directory to respective path for the given alias.
+EOF
 }
 
 __p_set() {
