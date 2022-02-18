@@ -2,6 +2,7 @@
 P_PROPERTIES_FILE="${P_PROPERTIES_FILE:=$HOME/.pdata.properties}"
 
 p() {
+    touch $P_PROPERTIES_FILE
     case $1 in
     set) __p_set $2 $3 ;;
     list) __p_list $2 ;;
@@ -98,7 +99,6 @@ __p_getPath() {
 }
 
 __p_add() {
-    touch $P_PROPERTIES_FILE
     echo $1=$2 >> $P_PROPERTIES_FILE
 }
 
