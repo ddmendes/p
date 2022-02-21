@@ -94,8 +94,7 @@ __p_getPath() {
         return 1
     fi
 
-    local _p_path=$(grep ^$1 $P_PROPERTIES_FILE | cut -d"=" -f2)
-    echo $_p_path
+    grep ^$1 $P_PROPERTIES_FILE | cut -d"=" -f2
 }
 
 __p_add() {
