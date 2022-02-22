@@ -1,5 +1,6 @@
 
 P_PROPERTIES_FILE="${P_PROPERTIES_FILE:=$HOME/.pdata.properties}"
+_P_VERSION="1.0.0"
 
 p() {
     touch $P_PROPERTIES_FILE
@@ -11,6 +12,8 @@ p() {
     help)   ;&
     -h)
         __p_help ;;
+    --version) ;&
+    -v) __p_version ;;
     *)
         if [ -z $1 ] ; then
             __p_help
@@ -39,6 +42,10 @@ list        If no alias is given list all known alias=path.
 rm          Remove an alias.
 <alias>     Change working directory to respective path for the given alias.
 EOF
+}
+
+__p_version() {
+    echo "P path shortcuts manager version $_P_VERSION"
 }
 
 __p_set() {
