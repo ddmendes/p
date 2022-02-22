@@ -1,6 +1,11 @@
 # P
 Path shortcuts manager
 
+## How Does It Works
+
+If you are curious on how does **p** works check out my article on Medium:
+* https://medium.com/@ddmendes/developing-a-path-shortcuts-manager-c4fd554a027e
+
 ## Instalation
 
 Just clone the repo somewhere and source `p.sh` into your shell rc (~/.zshrc or
