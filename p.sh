@@ -59,7 +59,7 @@ __p_list() {
     if [ -z $1 ] ; then
         cat $P_PROPERTIES_FILE
     else
-        local singleAlias=$(grep ^$1 $P_PROPERTIES_FILE)
+        local singleAlias=$(grep ^$1= $P_PROPERTIES_FILE)
         if [ -z $singleAlias ] ; then
             __p_err "Alias \"$1\" does not exist"
             return 1
@@ -74,7 +74,7 @@ __p_rm() {
         __p_err "Missing alias key"
     fi
 
-    grep -v $1 $P_PROPERTIES_FILE > $P_PROPERTIES_FILE.tmp
+    grep -v ^$1= $P_PROPERTIES_FILE > $P_PROPERTIES_FILE.tmp
     mv $P_PROPERTIES_FILE{.tmp,}
 }
 
@@ -94,7 +94,7 @@ __p_getPath() {
         return 1
     fi
 
-    grep ^$1 $P_PROPERTIES_FILE | cut -d"=" -f2
+    grep ^$1= $P_PROPERTIES_FILE | cut -d"=" -f2
 }
 
 __p_add() {
