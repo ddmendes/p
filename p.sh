@@ -1,6 +1,6 @@
 
 P_PROPERTIES_FILE="${P_PROPERTIES_FILE:=$HOME/.pdata.properties}"
-_P_VERSION="1.0.0"
+_P_VERSION="1.0.1-dev"
 
 p() {
     touch $P_PROPERTIES_FILE
