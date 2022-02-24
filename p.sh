@@ -64,7 +64,7 @@ __p_set() {
 
 __p_list() {
     if [ -z $1 ] ; then
-        cat $P_PROPERTIES_FILE
+        cat $P_PROPERTIES_FILE | sort
     else
         local singleAlias=$(grep ^$1= $P_PROPERTIES_FILE)
         if [ -z $singleAlias ] ; then
