@@ -15,9 +15,14 @@ pushd $P_PATH
 git clone https://github.com/ddmendes/p.git
 
 case $(basename $SHELL) in
-bash) echo "bash case" ;;
-zsh) echo "zsh case";;
-fish) echo "fish case" ;;
+bash) SHELLRC="$HOME/.bashrc" ;;
+zsh) SHELLRC="$HOME/.zshrc" ;;
+fish) SHELLRC="$HOME/.fishrc" ;;
 esac
+
+if ![ $(grep -qv "export P_PATH" $SHELLRC) ] ; then
+    echo "export P_PATH=\"$P_PATH\"" >> $SHELLRC
+fi
+echo "source $P_PATH/p.sh" >> $SHELLRC
 
 popd
