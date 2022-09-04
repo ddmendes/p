@@ -1,6 +1,6 @@
 
 P_PROPERTIES_FILE="${P_PROPERTIES_FILE:=$HOME/.pdata.properties}"
-_P_VERSION="1.0.0"
+_P_VERSION="1.0.1-dev"
 
 p() {
     touch $P_PROPERTIES_FILE
@@ -64,7 +64,7 @@ __p_set() {
 
 __p_list() {
     if [ -z $1 ] ; then
-        cat $P_PROPERTIES_FILE
+        cat $P_PROPERTIES_FILE | sort
     else
         local singleAlias=$(grep ^$1= $P_PROPERTIES_FILE)
         if [ -z $singleAlias ] ; then
